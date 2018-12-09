@@ -1,4 +1,4 @@
-package model
+package anime
 
 type Anime struct {
 	Id string `json:"id, omitempty"`

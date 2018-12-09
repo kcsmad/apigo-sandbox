@@ -1,23 +1,34 @@
-package api
+package main
 
 import (
 	"github.com/gorilla/mux"
-	."golang-api-sandbox/config"
-	."golang-api-sandbox/hobbies/anime"
+	. "golang-api-sandbox/api/anime"
+	. "golang-api-sandbox/infra/config"
+	"log"
+	"net/http"
 )
 
 var config = Config{}
-var animeDAO = AnimeDAO {}
-var animes []Anime
+var dao = AnimeDAO{}
 
-func main() {
-	routerConfig()
+func init() {
+	config.ReadConfigFile()
 
+	dao.Server = config.Server
+	dao.Database = config.Database
+	dao.Connect()
 }
 
+func main() {
+	initServe()
+}
 
-func routerConfig() {
+func initServe() {
 	router := mux.NewRouter()
-	router.HandleFunc()
+	router.HandleFunc("/anime", GetAnimes).Methods("GET")
+	router.HandleFunc("/planet", CreateAnime).Methods("POST")
 
+	if err := http.ListenAndServe(":8000", router); err != nil {
+		log.Fatal(err)
+	}
 }

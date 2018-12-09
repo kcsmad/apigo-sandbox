@@ -1,7 +1,6 @@
-package dao
+package anime
 
 import (
-	."golang-api-sandbox/hobbies/anime/model"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 	"log"
@@ -50,4 +49,19 @@ func (dao *AnimeDAO) GetAllByName(name string) ([]Anime, error) {
 	var animes []Anime
 	err := db.C(COLLECTION).Find(bson.M{name: name}).All(&animes)
 	return animes, err
+}
+
+func (dao *AnimeDAO) Insert(anime Anime) error {
+	err := db.C(COLLECTION).Insert(&anime)
+	return err
+}
+
+func (dao *AnimeDAO) Update(anime Anime) error {
+	err := db.C(COLLECTION).UpdateId(anime.Id, &anime)
+	return err
+}
+
+func (dao *AnimeDAO) Delete(anime Anime) error {
+	err := db.C(COLLECTION).Remove(&anime)
+	return err
 }
