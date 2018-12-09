@@ -24,7 +24,7 @@ func (dao *AnimeDAO) Connect() {
 		log.Fatal(err)
 	}
 
-	session.DB(dao.Database)
+	db = session.DB(dao.Database)
 }
 
 func (dao *AnimeDAO) GetAll() ([]Anime, error) {

@@ -31,7 +31,7 @@ func ResponseInternalServerError(resp http.ResponseWriter) {
 }
 
 func responseJSON(respWriter http.ResponseWriter, code int, payload interface{}) {
-	response, _ := json.Marshal(payload)
+	response,_ := json.Marshal(payload)
 
 	respWriter.Header().Set("Content-Type", "application/json")
 	respWriter.WriteHeader(code)

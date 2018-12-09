@@ -19,7 +19,7 @@ func CreateAnime(resp http.ResponseWriter, req *http.Request) {
 		ResponseBadRequest(resp)
 	}
 
-	anime.Id = bson.NewObjectId().String()
+	anime.Id = bson.NewObjectId()
 
 	if err := dao.Insert(anime); err != nil {
 		log.Fatal(err.Error())

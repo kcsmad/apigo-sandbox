@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"github.com/gorilla/mux"
 	. "golang-api-sandbox/api/anime"
 	. "golang-api-sandbox/infra/config"
@@ -26,9 +27,11 @@ func main() {
 func initServe() {
 	router := mux.NewRouter()
 	router.HandleFunc("/anime", GetAnimes).Methods("GET")
-	router.HandleFunc("/planet", CreateAnime).Methods("POST")
+	router.HandleFunc("/anime", CreateAnime).Methods("POST")
 
 	if err := http.ListenAndServe(":8000", router); err != nil {
 		log.Fatal(err)
 	}
+
+	fmt.Println("Server running and listenning in http://localhost:8000")
 }
