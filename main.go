@@ -29,9 +29,9 @@ func initServe() {
 	router.HandleFunc("/anime", GetAnimes).Methods("GET")
 	router.HandleFunc("/anime", CreateAnime).Methods("POST")
 
+	fmt.Println("Server running and listenning in http://localhost:8000")
+
 	if err := http.ListenAndServe(":8000", router); err != nil {
 		log.Fatal(err)
 	}
-
-	fmt.Println("Server running and listenning in http://localhost:8000")
 }

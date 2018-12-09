@@ -10,8 +10,8 @@ type Config struct {
 	Database string
 }
 
-func readConfigFile(conf *Config) {
-	if _, err := toml.DecodeFile("../config.toml", &conf); err != nil {
+func (config *Config) ReadConfigFile() {
+	if _, err := toml.DecodeFile("config.toml", &config); err != nil {
 		log.Fatal(err)
 	}
 }
