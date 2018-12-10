@@ -1,2 +1,5 @@
+#[START runtime]
 runtime: go111
 api_version: go1
+vm: true
+#[END runtime]
