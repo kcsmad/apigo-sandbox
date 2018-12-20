@@ -1,4 +1,12 @@
 #[START runtime]
 runtime: go111
+env: flex
 api_version: go1
+manual_scaling:
+  instances: 1
+
+resources:
+  cpu: 1
+  memory_gb: 0.5
+  disk_size_gb: 10
 #[END runtime]
